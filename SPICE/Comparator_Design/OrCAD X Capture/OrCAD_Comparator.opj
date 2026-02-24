@@ -1,6 +1,6 @@
 (ExpressProject "OrCAD_Comparator"
   (ProjectVersion "19981106")
-  (SoftwareVersion "24.1 P001 (4234998)  [9/4/2024]-[08/12/09]")
+  (SoftwareVersion "24.1 P001 (4234998)  [9/4/2024]-[02/24/26]")
   (ProjectType "Analog or A/D Mixed Mode")
   (Folder "Design Resources"
     (Folder "Library"
@@ -36,17 +36,25 @@
     (ANNOTATE_No_Page_Number_Change "TRUE")
     (ANNOTATE_Property_Combine "{Value}{Source Package}")
     (DOCKED "TRUE")
-    (DOCKING_POSITION "59420"))
+    (DOCKING_POSITION "59420")
+    (Board_sim_option "VHDL_flow")
+    (PSPICE_Regenerate_Netlist_Flag "TRUE"))
   (Folder "Layout")
-  (Folder "Outputs")
+  (Folder "Outputs"
+    (File ".\orcad_comparator-pspicefiles\schematic1\schematic1.net"
+      (Type "Report")))
   (Folder "PSpice Resources"
     (Folder "Stimulus Files")
     (Folder "Include Files")
     (Folder "Simulation Profiles"
-      (ActiveProfile ".\orcad_comparator-pspicefiles\schematic1\bias.sim")
       (File.PSpice.{09528990-3187-11D2-BC7B-00A0C90CBF91}
          ".\orcad_comparator-pspicefiles\schematic1\bias.sim"
         (DisplayName "SCHEMATIC1-bias")
+        (Type "PSpice Profile"))
+      (ActiveProfile ".\orcad_comparator-pspicefiles\schematic1\dc_test.sim")
+      (File.PSpice.{09528990-3187-11D2-BC7B-00A0C90CBF91}
+         ".\orcad_comparator-pspicefiles\schematic1\dc_test.sim"
+        (DisplayName "SCHEMATIC1-dc_test")
         (Type "PSpice Profile")))
     (Folder "Model Libraries"
       (File ".\orcad_comparator-pspicefiles\orcad_comparator.lib"
@@ -55,6 +63,25 @@
       (Sort User)))
   (DefaultLibraryBrowseDirectory "library\PSpice")
   (PartMRUSelector
+    (VDC
+      (FullPartName "VDC.Normal")
+      (LibraryName
+         "C:\CADENCE\SPB_24.1-SILENT\TOOLS\CAPTURE\LIBRARY\PSPICE\SOURCE.OLB")
+      (DeviceIndex "0"))
+    (0
+      (LibraryName
+         "C:\CADENCE\SPB_24.1-SILENT\TOOLS\CAPTURE\LIBRARY\PSPICE\SOURCE.OLB")
+      (DeviceIndex "0"))
+    (MbreakP3
+      (FullPartName "MbreakP3.Normal")
+      (LibraryName
+         "C:\CADENCE\SPB_24.1-SILENT\TOOLS\CAPTURE\LIBRARY\PSPICE\BREAKOUT.OLB")
+      (DeviceIndex "0"))
+    (MbreakN3
+      (FullPartName "MbreakN3.Normal")
+      (LibraryName
+         "C:\CADENCE\SPB_24.1-SILENT\TOOLS\CAPTURE\LIBRARY\PSPICE\BREAKOUT.OLB")
+      (DeviceIndex "0"))
     (R
       (FullPartName "R.Normal")
       (LibraryName "..\..\LIBRARY\PSPICE\ANALOG.OLB")
@@ -70,21 +97,34 @@
     (VSTIM
       (FullPartName "VSTIM.Normal")
       (LibraryName "..\..\LIBRARY\PSPICE\SOURCSTM.OLB")
-      (DeviceIndex "0"))
-    (VDC
-      (FullPartName "VDC.Normal")
-      (LibraryName "..\..\LIBRARY\PSPICE\SOURCE.OLB")
       (DeviceIndex "0")))
-  (LastUsedLibraryBrowseDirectory "LIBRARY\PSPICE")
+  (LastUsedLibraryBrowseDirectory
+     "C:\Users\alkinanl\Desktop\Analog-Comparator-IC-Design\models")
   (MPSSessionName "alkinanl")
   (Folder "Logs")
   (GlobalState
     (FileView
       (Path "Design Resources")
-      (Select "Design Resources"))
+      (Path "Design Resources"
+         "C:\Users\alkinanl\Desktop\Analog-Comparator-IC-Design\SPICE\Comparator_Design\OrCAD X Capture\orcad_comparator.dsn")
+      (Path "Design Resources"
+         "C:\Users\alkinanl\Desktop\Analog-Comparator-IC-Design\SPICE\Comparator_Design\OrCAD X Capture\orcad_comparator.dsn"
+         "SCHEMATIC1")
+      (Path "Outputs"))
     (HierarchyView)
     (Doc
       (Type "COrCapturePMDoc")
       (Frame
-        (Placement "44 0 1 -1 -1 -1 -1 0 200 0 724"))
-      (Tab 0))))
+        (Placement "44 0 1 -1 -1 -1 -1 0 200 0 747"))
+      (Tab 0))
+    (Doc
+      (Type "COrSchematicDoc")
+      (Frame
+        (Placement "44 0 1 -1 -1 5 24 5 1393 24 765")
+        (Scroll "-188 0")
+        (Zoom "101")
+        (Occurrence "/"))
+      (Path
+         "C:\USERS\ALKINANL\DESKTOP\ANALOG-COMPARATOR-IC-DESIGN\SPICE\COMPARATOR_DESIGN\ORCAD X CAPTURE\ORCAD_COMPARATOR.DSN")
+      (Schematic "SCHEMATIC1")
+      (Page "PAGE1"))))
