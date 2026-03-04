@@ -4,7 +4,7 @@
   (ProjectType "Analog or A/D Mixed Mode")
   (Folder "Design Resources"
     (Folder "Library")
-    ("Allegro Netlist Directory" "allegro")
+    (Allegro Netlist Directory "allegro")
     (DOCKED "TRUE")
     (DOCKING_POSITION "59420")
     (NoModify)
@@ -16,11 +16,12 @@
   (Folder "Outputs")
   (Folder "PSpice Resources"
     (Folder "Simulation Profiles")
+    (Folder "Stimulus Files")
+    (Folder "Include Files")
     (Folder "Model Libraries"
-      (Sort User))
-    (Folder "Stimulus Files"
-      (Sort User))
-    (Folder "Include Files"
+      (File ".\orcad_comparator-pspicefiles\orcad_comparator.lib"
+        (DisplayName ".\orcad_comparator-pspicefiles\orcad_comparator.lib")
+        (Type "PSpiceLibrary"))
       (Sort User)))
   (DefaultLibraryBrowseDirectory "library\PSpice")
   (Folder "Logs"))
