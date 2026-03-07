@@ -51,3 +51,42 @@ title(sprintf('g_m vs W/L | V_{ov}=0.2V, A_v=%.1f', Av))
 grid on; box on;
 
 sgtitle('5T OTA: V_{ov}=0.2V Fixed Design', 'FontSize', 13)
+
+
+
+
+%% part 2 - finding m3 bias points / sizing
+
+kp       = 19.2e-6;
+Id3      = 6.048e-6;   % = Iss/2
+Vtp      = 0.8;
+VDD      = 3;
+
+Vov3_sweep = linspace(0.1, 1.5, 1000);   % sweep Vov3
+
+% W/L3 from Id = kp*(W/L)*Vov^2
+WL3 = Id3 ./ (kp * Vov3_sweep.^2);
+
+% Corresponding Vsg3 = Vov3 + |Vtp|
+Vsg3 = Vov3_sweep + Vtp;
+
+% Corresponding Vout_DC = VDD - Vsd3 = VDD - Vsg3 (diode connected)
+Vout_DC = VDD - Vsg3;
+
+% Plot
+figure;
+subplot(2,1,1)
+plot(Vov3_sweep, WL3, 'b-', 'LineWidth', 1.5)
+yline(1, 'r--', 'W/L = 1 minimum', 'LineWidth', 1.2)
+xlabel('V_{ov3} (V)'); ylabel('W/L_3')
+title('W/L_3 vs V_{ov3}')
+grid on; box on;
+
+subplot(2,1,2)
+plot(Vov3_sweep, Vout_DC, 'r-', 'LineWidth', 1.5)
+yline(VDD/2, 'b--', 'VDD/2', 'LineWidth', 1.2)
+xlabel('V_{ov3} (V)'); ylabel('V_{out DC} (V)')
+title('V_{out DC} vs V_{ov3}')
+grid on; box on;
+
+sgtitle('M3/M4 Sizing Sweep', 'FontSize', 13)
