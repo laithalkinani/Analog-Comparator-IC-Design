@@ -1,0 +1,3 @@
+# ignore py venv use requirements.txt to set up your venv
+python-calculations/venv
+python-calculations/__pycache__
