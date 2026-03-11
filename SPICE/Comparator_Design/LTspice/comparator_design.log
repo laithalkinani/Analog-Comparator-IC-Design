@@ -1,8 +1,8 @@
 LTspice 26.0.1 for Windows
-Circuit: C:\users\abdalaj\Desktop\courses\analog_ic_desn\project\Analog-Comparator-IC-Design\SPICE\Comparator_Design\LTspice\comparator_design.net
-Start Time: Tue Mar 10 22:23:42 2026
+Circuit: C:\Users\alkinanl\Desktop\Analog-Comparator-IC-Design\SPICE\Comparator_Design\LTspice\comparator_design.net
+Start Time: Wed Mar 11 09:17:34 2026
 solver = Normal
-Maximum thread count: 12
+Maximum thread count: 20
 tnom = 27
 temp = 27
 method = trap
@@ -29,10 +29,10 @@ Instance "M7": Width narrower than recommended for a level 1 MOSFET.
 Instance "M10": Length shorter than recommended for a level 1 MOSFET.
 Instance "M10": Width narrower than recommended for a level 1 MOSFET.
 Direct Newton iteration succeeded in finding operating point.
-Total elapsed time: 0.248 seconds.
+Total elapsed time: 0.111 seconds.
 
 Files loaded:
-C:\users\abdalaj\Desktop\courses\analog_ic_desn\project\Analog-Comparator-IC-Design\SPICE\Comparator_Design\LTspice\comparator_design.net
-C:\users\abdalaj\AppData\Local\LTspice\lib\cmp\standard.mos
-C:\users\abdalaj\Desktop\courses\analog_ic_desn\project\Analog-Comparator-IC-Design\SPICE\Comparator_Design\LTspice\cmos_models.lib
+C:\Users\alkinanl\Desktop\Analog-Comparator-IC-Design\SPICE\Comparator_Design\LTspice\comparator_design.net
+C:\Users\alkinanl\AppData\Local\LTspice\lib\cmp\standard.mos
+C:\Users\alkinanl\Desktop\Analog-Comparator-IC-Design\SPICE\Comparator_Design\LTspice\cmos_models.lib
 
