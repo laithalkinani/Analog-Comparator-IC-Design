@@ -1,6 +1,6 @@
 LTspice 26.0.1 for Windows
 Circuit: C:\users\abdalaj\Desktop\courses\analog_ic_desn\project\Analog-Comparator-IC-Design\SPICE\Comparator_Design\LTspice\comparator_design.net
-Start Time: Tue Mar 10 22:23:42 2026
+Start Time: Mon Mar 16 14:13:26 2026
 solver = Normal
 Maximum thread count: 12
 tnom = 27
@@ -14,22 +14,15 @@ Instance "M2": Width narrower than recommended for a level 1 MOSFET.
 Instance "M3": Length shorter than recommended for a level 1 MOSFET.
 Instance "M3": Width narrower than recommended for a level 1 MOSFET.
 Instance "M4": Length shorter than recommended for a level 1 MOSFET.
-Instance "M4": Width narrower than recommended for a level 1 MOSFET.
 Instance "M8": Length shorter than recommended for a level 1 MOSFET.
-Instance "M8": Width narrower than recommended for a level 1 MOSFET.
-Instance "M9": Length shorter than recommended for a level 1 MOSFET.
-Instance "M9": Width narrower than recommended for a level 1 MOSFET.
 Model "pmos_lvl1": Oxide thickness thinner than recommended for a level 1 MOSFET.
 Instance "M6": Length shorter than recommended for a level 1 MOSFET.
 Instance "M6": Width narrower than recommended for a level 1 MOSFET.
-Instance "M5": Length shorter than recommended for a level 1 MOSFET.
-Instance "M5": Width narrower than recommended for a level 1 MOSFET.
 Instance "M7": Length shorter than recommended for a level 1 MOSFET.
-Instance "M7": Width narrower than recommended for a level 1 MOSFET.
 Instance "M10": Length shorter than recommended for a level 1 MOSFET.
 Instance "M10": Width narrower than recommended for a level 1 MOSFET.
 Direct Newton iteration succeeded in finding operating point.
-Total elapsed time: 0.248 seconds.
+Total elapsed time: 0.468 seconds.
 
 Files loaded:
 C:\users\abdalaj\Desktop\courses\analog_ic_desn\project\Analog-Comparator-IC-Design\SPICE\Comparator_Design\LTspice\comparator_design.net

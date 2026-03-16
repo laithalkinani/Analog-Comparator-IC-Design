@@ -8,12 +8,17 @@ from model_parameters import model, nmos, pmos
 # the assumption is that W and L of all M in current mirror are the same 
 def CM_minWLForSaturation(model: model, VGS, ID, L: float = 5e-6, VSB: float = 0) -> float: 
     
-    Vov = VGS - model.cal_vth(VSB)
+    Vov = VGS - model.get_vth(VSB)
 
     if Vov <= 0: 
         return float('inf') # impossible for current to conduct in saturation
     
     return (ID * L) / (model.get_k() * (Vov ** 2) * (1 + model.LAMBDA * VGS)) # this is the min ratio needed
+
+def W_for_vov(model: model, Vov, Iref: float = 10e-6, L: float = 5e-6) -> float: 
+
+    W = (Iref * L) / ((Vov ** 2) * model.k * (1 + model.LAMBDA * (Vov + model.get_vth())))
+    return W 
 
 def tail_current_ro(model: model, ID) -> float:
     # assumption: body of transistor is tied to ground
@@ -83,3 +88,4 @@ def cal_gain(n_model: model, p_model: model, gm_n, tail_current):
     # rout is (r_o,n || r_o,p)
     rout = (ro_n * ro_p) / (ro_n + ro_p)
     return gm_n * rout
+

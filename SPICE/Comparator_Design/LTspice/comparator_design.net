@@ -5,12 +5,12 @@ I_ref VDD N003 10µ
 M1 N003 N003 0 0 NMOS_LVL1 l=5u w=5u
 M2 diff_out Vin_2 N002 0 NMOS_LVL1 l=5u w=5u
 M3 N001 Vin_1 N002 0 NMOS_LVL1 l=5u w=5u
-M4 N002 N003 0 0 NMOS_LVL1 l=5u w=5u
+M4 N002 N003 0 0 NMOS_LVL1 l=5u w=40u
 M6 VDD N001 diff_out VDD PMOS_LVL1 l=5u w=5u
-M8 CS_out N003 0 0 NMOS_LVL1 l=5u w=5u
-M9 Vout CS_out 0 0 NMOS_LVL1 l=5u w=5u
-M5 VDD CS_out Vout VDD PMOS_LVL1 l=5u w=5u
-M7 VDD diff_out CS_out VDD PMOS_LVL1 l=5u w=5u
+M8 CS_out N003 0 0 NMOS_LVL1 l=10u w=25u
+M9 Vout CS_out 0 0 NMOS_LVL1 l=40u w=20u
+M5 VDD CS_out Vout VDD PMOS_LVL1 l=20u w=40u
+M7 VDD diff_out CS_out VDD PMOS_LVL1 l=10u w=19u
 M10 VDD N001 N001 VDD PMOS_LVL1 l=5u w=5u
 V1 Vin_1 0 SINE(1.2 10m 1K)
 V2 Vin_2 0 SINE(1.2 0 0)
@@ -21,10 +21,8 @@ V2 Vin_2 0 SINE(1.2 0 0)
 * CS amplifier
 * Inverting buffer
 * Current mirror
-* .tf Vout Vin_1
-* .tf CS_out Vin_1
-* .tf diff_out Vin_1
-.tran 0.01
-* .op
+* Comparator Schema
+.tran 0 .005 0
+;.op
 .backanno
 .end
