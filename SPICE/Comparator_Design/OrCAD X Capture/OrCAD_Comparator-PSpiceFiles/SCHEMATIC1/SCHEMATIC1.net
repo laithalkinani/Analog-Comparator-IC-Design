@@ -1,5 +1,0 @@
-* source ORCAD_COMPARATOR
-M_M1         N00122 N00172 0 0 NMOS_LVL1           
-V_V1         N00172 0 0Vdc
-V_V2         N00126 0 3Vdc
-R_R1         N00122 N00126  1k TC=0,0 
