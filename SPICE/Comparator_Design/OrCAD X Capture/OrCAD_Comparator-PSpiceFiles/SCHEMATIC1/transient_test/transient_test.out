@@ -1,5 +1,5 @@
 
-**** 03/11/26 09:53:16 *** PSpice 24.1.0 (4 September 2024) *** ID# 0 ********
+**** 03/18/26 09:17:49 *** PSpice 24.1.0 (4 September 2024) *** ID# 0 ********
 
  ** Profile: "SCHEMATIC1-transient_test"  [ C:\Users\alkinanl\Desktop\Analog-Comparator-IC-Design\SPICE\Comparator_Design\OrCAD X Cap
 
@@ -23,7 +23,7 @@
 .lib "nom.lib" 
 
 *Analysis directives: 
-.TRAN  0 0.1 0 
+.TRAN  0 0.001 0 1e-9 
 .OPTIONS ADVCONV
 .AUTOCONVERGE ITL1=1000 ITL2=1000 ITL4=1000 RELTOL=0.05 ABSTOL=1.0E-6 VNTOL=.001 PIVTOL=1.0E-10 
 .PROBE64 V(alias(*)) I(alias(*)) W(alias(*)) D(alias(*)) NOISE(alias(*)) 
@@ -35,10 +35,10 @@
 * source ORCAD_COMPARATOR
 M_M1         N00630 N01600 N00562 N00562 NMOS_LVL1  
 + L=5u  
-+ W=5u         
++ W=45u         
 M_M2         N06648 N02275 N00562 N00562 NMOS_LVL1  
 + L=5u  
-+ W=5u         
++ W=45u         
 M_M3         N00630 N00630 N01096 N01096 PMOS_LVL1  
 + L=5u  
 + W=5u         
@@ -50,20 +50,20 @@ M_M5         N00620 N00620 0 0 NMOS_LVL1
 + W=5u         
 M_M6         N00562 N00620 0 0 NMOS_LVL1  
 + L=5u  
-+ W=5u         
++ W=60u         
 M_M7         N00708 N06648 N01096 N01096 PMOS_LVL1  
 + L=5u  
 + W=5u         
 M_M8         N00708 N00620 0 0 NMOS_LVL1  
 + L=5u  
-+ W=5u         
++ W=30u         
 M_M9         N07301 N00708 N01096 N01096 PMOS_LVL1  
 + L=5u  
 + W=5u         
 M_M10         N07301 N00708 0 0 NMOS_LVL1  
 + L=5u  
-+ W=5u         
-I_IREF         N01096 N00620 DC 10uAdc  
++ W=50u         
+I_IREF         N01096 N00620 DC 1uAdc  
 V_VDD         N01096 0 3Vdc
 V_V1         N01600 0  
 +SIN 1.2 10m 1000 0 0 0
@@ -74,7 +74,7 @@ V_V2         N02275 0 1.2Vdc
 
 WARNING(ORPSIM-15676): LAMBDA for MOSFET model PMOS_LVL1 is unusually large and might cause non-convergence
 
-**** 03/11/26 09:53:16 *** PSpice 24.1.0 (4 September 2024) *** ID# 0 ********
+**** 03/18/26 09:17:49 *** PSpice 24.1.0 (4 September 2024) *** ID# 0 ********
 
  ** Profile: "SCHEMATIC1-transient_test"  [ C:\Users\alkinanl\Desktop\Analog-Comparator-IC-Design\SPICE\Comparator_Design\OrCAD X Cap
 
@@ -126,7 +126,7 @@ WARNING(ORPSIM-15676): LAMBDA for MOSFET model PMOS_LVL1 is unusually large and 
 
 WARNING(ORPSIM-15676): LAMBDA for MOSFET model PMOS_LVL1 is unusually large and might cause non-convergence
 
-**** 03/11/26 09:53:16 *** PSpice 24.1.0 (4 September 2024) *** ID# 0 ********
+**** 03/18/26 09:17:49 *** PSpice 24.1.0 (4 September 2024) *** ID# 0 ********
 
  ** Profile: "SCHEMATIC1-transient_test"  [ C:\Users\alkinanl\Desktop\Analog-Comparator-IC-Design\SPICE\Comparator_Design\OrCAD X Cap
 
@@ -141,11 +141,11 @@ WARNING(ORPSIM-15676): LAMBDA for MOSFET model PMOS_LVL1 is unusually large and 
  NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
 
 
-(N00562)     .2672 (N00620)    1.0610 (N00630)    1.7818 (N00708)     .1321     
+(N00562)     .4096 (N00620)     .8155 (N00630)    1.7194 (N00708)    1.2265     
 
-(N01096)    3.0000 (N01600)    1.2000 (N02275)    1.2000 (N06648)    1.7818     
+(N01096)    3.0000 (N01600)    1.2000 (N02275)    1.2000 (N06648)    1.7194     
 
-(N07301)    3.0000 
+(N07301)     .0427 
 
 
 
@@ -153,11 +153,11 @@ WARNING(ORPSIM-15676): LAMBDA for MOSFET model PMOS_LVL1 is unusually large and 
     VOLTAGE SOURCE CURRENTS
     NAME         CURRENT
 
-    V_VDD       -2.413E-05
+    V_VDD       -4.879E-05
     V_V1         0.000E+00
     V_V2         0.000E+00
 
-    TOTAL POWER DISSIPATION   7.24E-05  WATTS
+    TOTAL POWER DISSIPATION   1.46E-04  WATTS
 
 
 
@@ -171,7 +171,7 @@ WARNING(ORPSIM-15676): LAMBDA for MOSFET model PMOS_LVL1 is unusually large and 
  VNTOL = 1e-06
  PIVTOL = 1e-13
 
-**** 03/11/26 09:53:16 *** PSpice 24.1.0 (4 September 2024) *** ID# 0 ********
+**** 03/18/26 09:17:49 *** PSpice 24.1.0 (4 September 2024) *** ID# 0 ********
 
  ** Profile: "SCHEMATIC1-transient_test"  [ C:\Users\alkinanl\Desktop\Analog-Comparator-IC-Design\SPICE\Comparator_Design\OrCAD X Cap
 
@@ -183,5 +183,5 @@ WARNING(ORPSIM-15676): LAMBDA for MOSFET model PMOS_LVL1 is unusually large and 
 
 
 
-  Total job time (using Solver 1)   =         .08
+  Total job time (using Solver 1)   =       22.28
 

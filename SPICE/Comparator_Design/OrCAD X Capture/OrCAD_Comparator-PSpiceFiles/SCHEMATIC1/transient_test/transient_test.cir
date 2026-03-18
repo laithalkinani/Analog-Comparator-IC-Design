@@ -1,4 +1,4 @@
-** Profile: "SCHEMATIC1-transient_test"  [ C:\Users\alkinanl\Desktop\Analog-Comparator-IC-Design\SPICE\Comparator_Design\OrCAD X Capture\OrCAD_Comparator-PSpiceFiles\SCHEMATIC1\transient_test.sim ] 
+** Profile: "SCHEMATIC1-transient_test"  [ C:\Users\alkinanl\Desktop\Analog-Comparator-IC-Design\SPICE\Comparator_Design\OrCAD X Capture\orcad_comparator-pspicefiles\schematic1\transient_test.sim ] 
 
 ** Creating circuit file "transient_test.cir" 
 ** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT SIMULATIONS
@@ -11,7 +11,7 @@
 .lib "nom.lib" 
 
 *Analysis directives: 
-.TRAN  0 0.1 0 
+.TRAN  0 0.001 0 1e-9 
 .OPTIONS ADVCONV
 .AUTOCONVERGE ITL1=1000 ITL2=1000 ITL4=1000 RELTOL=0.05 ABSTOL=1.0E-6 VNTOL=.001 PIVTOL=1.0E-10 
 .PROBE64 V(alias(*)) I(alias(*)) W(alias(*)) D(alias(*)) NOISE(alias(*)) 
