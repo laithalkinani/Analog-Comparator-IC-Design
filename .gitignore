@@ -1,3 +1,4 @@
 # ignore py venv use requirements.txt to set up your venv
 python-calculations/venv
 python-calculations/__pycache__
+SPICE/Comparator_Design/OrCAD X Capture/OrCAD_Comparator-PSpiceFiles/SCHEMATIC1/transient_test/transient_test.dat
