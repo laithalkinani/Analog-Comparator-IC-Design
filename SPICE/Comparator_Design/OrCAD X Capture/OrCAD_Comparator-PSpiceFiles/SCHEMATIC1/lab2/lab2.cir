@@ -1,6 +1,6 @@
-** Profile: "SCHEMATIC1-dc_gsweep"  [ C:\Users\tsao2\Documents\Analog-Comparator-IC-Design\SPICE\Comparator_Design\OrCAD X Capture\orcad_comparator-pspicefiles\schematic1\dc_gsweep.sim ] 
+** Profile: "SCHEMATIC1-lab2"  [ C:\Users\tsao2\Documents\Analog-Comparator-IC-Design\SPICE\Comparator_Design\OrCAD X Capture\orcad_comparator-pspicefiles\schematic1\lab2.sim ] 
 
-** Creating circuit file "dc_gsweep.cir" 
+** Creating circuit file "lab2.cir" 
 ** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT SIMULATIONS
 
 *Libraries: 
@@ -11,7 +11,7 @@
 .lib "nom.lib" 
 
 *Analysis directives: 
-.DC LIN V_V1 0 3 0.2 
+.TRAN  0 0.1 0 
 .OPTIONS ADVCONV
 .PROBE64 V(alias(*)) I(alias(*)) W(alias(*)) D(alias(*)) NOISE(alias(*)) 
 .INC "..\SCHEMATIC1.net" 

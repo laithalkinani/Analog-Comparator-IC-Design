@@ -31,6 +31,6 @@ M_M10         N07301 N00708 0 0 NMOS_LVL1
 + W=5u         
 I_IREF         N01096 N00620 DC 10uAdc  
 V_VDD         N01096 0 3Vdc
-V_V1         N01600 0  
+V_V1         N01600 0  AC 0
 +SIN 1.2 10m 1000 0 0 0
 V_V2         N02275 0 1.2Vdc

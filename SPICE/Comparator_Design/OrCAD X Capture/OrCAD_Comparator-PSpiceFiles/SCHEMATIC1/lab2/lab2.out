@@ -1,7 +1,7 @@
-
-**** 03/11/26 10:23:15 *** PSpice 24.1.0 (4 September 2024) *** ID# 0 ********
 
- ** Profile: "SCHEMATIC1-dc_gsweep"  [ C:\Users\tsao2\Documents\Analog-Comparator-IC-Design\SPICE\Comparator_Design\OrCAD X Capture\o
+**** 03/18/26 09:29:31 *** PSpice 24.1.0 (4 September 2024) *** ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-lab2"  [ C:\Users\tsao2\Documents\Analog-Comparator-IC-Design\SPICE\Comparator_Design\OrCAD X Capture\orcad_
 
 
  ****     CIRCUIT DESCRIPTION
@@ -12,7 +12,7 @@
 
 
 
-** Creating circuit file "dc_gsweep.cir" 
+** Creating circuit file "lab2.cir" 
 ** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT SIMULATIONS
 
 *Libraries: 
@@ -23,7 +23,7 @@
 .lib "nom.lib" 
 
 *Analysis directives: 
-.DC LIN V_V1 0 3 0.2 
+.TRAN  0 0.1 0 
 .OPTIONS ADVCONV
 .PROBE64 V(alias(*)) I(alias(*)) W(alias(*)) D(alias(*)) NOISE(alias(*)) 
 .INC "..\SCHEMATIC1.net" 
@@ -64,18 +64,18 @@ M_M10         N07301 N00708 0 0 NMOS_LVL1
 + W=5u         
 I_IREF         N01096 N00620 DC 10uAdc  
 V_VDD         N01096 0 3Vdc
-V_V1         N01600 0  
+V_V1         N01600 0  AC 0
 +SIN 1.2 10m 1000 0 0 0
 V_V2         N02275 0 1.2Vdc
 
-**** RESUMING dc_gsweep.cir ****
+**** RESUMING lab2.cir ****
 .END
 
 WARNING(ORPSIM-15676): LAMBDA for MOSFET model PMOS_LVL1 is unusually large and might cause non-convergence
 
-**** 03/11/26 10:23:15 *** PSpice 24.1.0 (4 September 2024) *** ID# 0 ********
+**** 03/18/26 09:29:31 *** PSpice 24.1.0 (4 September 2024) *** ID# 0 ********
 
- ** Profile: "SCHEMATIC1-dc_gsweep"  [ C:\Users\tsao2\Documents\Analog-Comparator-IC-Design\SPICE\Comparator_Design\OrCAD X Capture\o
+ ** Profile: "SCHEMATIC1-lab2"  [ C:\Users\tsao2\Documents\Analog-Comparator-IC-Design\SPICE\Comparator_Design\OrCAD X Capture\orcad_
 
 
  ****     MOSFET MODEL PARAMETERS
@@ -124,15 +124,47 @@ WARNING(ORPSIM-15676): LAMBDA for MOSFET model PMOS_LVL1 is unusually large and 
 
 
 WARNING(ORPSIM-15676): LAMBDA for MOSFET model PMOS_LVL1 is unusually large and might cause non-convergence
+
+**** 03/18/26 09:29:31 *** PSpice 24.1.0 (4 September 2024) *** ID# 0 ********
 
-WARNING(ORPSIM-15676): LAMBDA for MOSFET model PMOS_LVL1 is unusually large and might cause non-convergence
+ ** Profile: "SCHEMATIC1-lab2"  [ C:\Users\tsao2\Documents\Analog-Comparator-IC-Design\SPICE\Comparator_Design\OrCAD X Capture\orcad_
+
+
+ ****     INITIAL TRANSIENT SOLUTION       TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+ NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
+
+
+(N00562)     .2672 (N00620)    1.0610 (N00630)    1.7818 (N00708)     .1321     
+
+(N01096)    3.0000 (N01600)    1.2000 (N02275)    1.2000 (N06648)    1.7818     
+
+(N07301)    3.0000 
+
+
+
+
+    VOLTAGE SOURCE CURRENTS
+    NAME         CURRENT
+
+    V_VDD       -2.413E-05
+    V_V1         0.000E+00
+    V_V2         0.000E+00
+
+    TOTAL POWER DISSIPATION   7.24E-05  WATTS
+
 
 
           JOB CONCLUDED
 
-**** 03/11/26 10:23:15 *** PSpice 24.1.0 (4 September 2024) *** ID# 0 ********
+**** 03/18/26 09:29:31 *** PSpice 24.1.0 (4 September 2024) *** ID# 0 ********
 
- ** Profile: "SCHEMATIC1-dc_gsweep"  [ C:\Users\tsao2\Documents\Analog-Comparator-IC-Design\SPICE\Comparator_Design\OrCAD X Capture\o
+ ** Profile: "SCHEMATIC1-lab2"  [ C:\Users\tsao2\Documents\Analog-Comparator-IC-Design\SPICE\Comparator_Design\OrCAD X Capture\orcad_
 
 
  ****     JOB STATISTICS SUMMARY
@@ -142,5 +174,5 @@ WARNING(ORPSIM-15676): LAMBDA for MOSFET model PMOS_LVL1 is unusually large and 
 
 
 
-  Total job time (using Solver 1)   =         .02
+  Total job time (using Solver 1)   =        1.73
 
