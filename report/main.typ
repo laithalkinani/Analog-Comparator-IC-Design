@@ -32,8 +32,8 @@
 }
 
 #show: project.with(
-  header_text: [ELEC4490 - Sensor and Vision Systems],
-  title: [Assignment 3 - 3D to 2D Projection of Shapes],
+  header_text: [ELEC4440 - Analog Integrated Circuit Design],
+  title: [Final Project - Comparator Design],
   authors: document-authors,
   date: auto,
   abstract:[ 
@@ -54,4 +54,4 @@
 
 #pagebreak()
 
-#include "citations.bib"
+#include("citations.bib")
