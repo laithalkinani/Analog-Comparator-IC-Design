@@ -1,6 +1,6 @@
 (ExpressProject "OrCAD_Comparator"
   (ProjectVersion "19981106")
-  (SoftwareVersion "24.1 P001 (4234998)  [9/4/2024]-[03/04/26]")
+  (SoftwareVersion "24.1 P001 (4234998)  [9/4/2024]-[03/11/26]")
   (ProjectType "Analog or A/D Mixed Mode")
   (Folder "Design Resources"
     (Folder "Library")
@@ -19,10 +19,15 @@
       (Type "Report")))
   (Folder "PSpice Resources"
     (Folder "Simulation Profiles"
-      (ActiveProfile ".\orcad_comparator-pspicefiles\schematic1\dc_gsweep.sim")
       (File.PSpice.{09528990-3187-11D2-BC7B-00A0C90CBF91}
          ".\orcad_comparator-pspicefiles\schematic1\dc_gsweep.sim"
         (DisplayName "SCHEMATIC1-dc_gsweep")
+        (Type "PSpice Profile"))
+      (ActiveProfile
+         ".\orcad_comparator-pspicefiles\schematic1\transient_test.sim")
+      (File.PSpice.{09528990-3187-11D2-BC7B-00A0C90CBF91}
+         ".\orcad_comparator-pspicefiles\schematic1\transient_test.sim"
+        (DisplayName "SCHEMATIC1-transient_test")
         (Type "PSpice Profile")))
     (Folder "Stimulus Files")
     (Folder "Include Files")
@@ -34,13 +39,13 @@
   (DefaultLibraryBrowseDirectory "library\PSpice")
   (Folder "Logs")
   (PartMRUSelector
-    (VSIN
-      (FullPartName "VSIN.Normal")
+    (VDC
+      (FullPartName "VDC.Normal")
       (LibraryName
          "C:\CADENCE\SPB_24.1-SILENT\TOOLS\CAPTURE\LIBRARY\PSPICE\SOURCE.OLB")
       (DeviceIndex "0"))
-    (VDC
-      (FullPartName "VDC.Normal")
+    (VSIN
+      (FullPartName "VSIN.Normal")
       (LibraryName
          "C:\CADENCE\SPB_24.1-SILENT\TOOLS\CAPTURE\LIBRARY\PSPICE\SOURCE.OLB")
       (DeviceIndex "0"))
@@ -87,11 +92,18 @@
         (Placement "44 0 1 -1 -1 -1 -1 0 200 0 747"))
       (Tab 0))
     (Doc
+      (Type "TextFile")
+      (Frame
+        (Placement "44 0 1 -1 -1 5 24 5 1674 24 765"))
+      (Path
+         "C:\Users\alkinanl\Desktop\Analog-Comparator-IC-Design\SPICE\Comparator_Design\OrCAD X Capture\OrCAD_Comparator-PSpiceFiles\SCHEMATIC1\SCHEMATIC1.net")
+      (Scroll "0"))
+    (Doc
       (Type "COrSchematicDoc")
       (Frame
-        (Placement "44 0 1 -1 -1 -1 -1 5 1674 24 765")
-        (Scroll "-348 -5")
-        (Zoom "97")
+        (Placement "44 2 3 -1 -1 5 24 5 1674 24 765")
+        (Scroll "313 215")
+        (Zoom "202")
         (Occurrence "/"))
       (Path
          "C:\USERS\ALKINANL\DESKTOP\ANALOG-COMPARATOR-IC-DESIGN\SPICE\COMPARATOR_DESIGN\ORCAD X CAPTURE\ORCAD_COMPARATOR.DSN")
