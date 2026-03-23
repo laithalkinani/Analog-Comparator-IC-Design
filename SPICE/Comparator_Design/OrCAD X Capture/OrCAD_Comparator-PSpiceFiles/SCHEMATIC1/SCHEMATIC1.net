@@ -1,0 +1,36 @@
+* source ORCAD_COMPARATOR
+M_M1         N00630 N01600 N00562 N00562 NMOS_LVL1  
++ L=5u  
++ W=5u         
+M_M2         N06648 N02275 N00562 N00562 NMOS_LVL1  
++ L=5u  
++ W=5u         
+M_M3         N00630 N00630 N01096 N01096 PMOS_LVL1  
++ L=5u  
++ W=5u         
+M_M4         N06648 N00630 N01096 N01096 PMOS_LVL1  
++ L=5u  
++ W=5u         
+M_M5         N00620 N00620 0 0 NMOS_LVL1  
++ L=5u  
++ W=5u         
+M_M6         N00562 N00620 0 0 NMOS_LVL1  
++ L=5u  
++ W=5u         
+M_M7         N00708 N06648 N01096 N01096 PMOS_LVL1  
++ L=5u  
++ W=5u         
+M_M8         N00708 N00620 0 0 NMOS_LVL1  
++ L=5u  
++ W=5u         
+M_M9         N07301 N00708 N01096 N01096 PMOS_LVL1  
++ L=5u  
++ W=5u         
+M_M10         N07301 N00708 0 0 NMOS_LVL1  
++ L=5u  
++ W=5u         
+I_IREF         N01096 N00620 DC 10uAdc  
+V_VDD         N01096 0 3Vdc
+V_V1         N01600 0  
++SIN 1.2 10m 1000 0 0 0
+V_V2         N02275 0 1.2Vdc
