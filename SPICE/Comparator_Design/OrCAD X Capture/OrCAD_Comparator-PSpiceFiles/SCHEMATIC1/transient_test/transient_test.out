@@ -1,4 +1,191 @@
 
+**** 03/11/26 09:53:16 *** PSpice 24.1.0 (4 September 2024) *** ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-transient_test"  [ C:\Users\alkinanl\Desktop\Analog-Comparator-IC-Design\SPICE\Comparator_Design\OrCAD X Cap
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+** Creating circuit file "transient_test.cir" 
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT SIMULATIONS
+
+*Libraries: 
+* Profile Libraries :
+* Local Libraries :
+.LIB "../../../orcad_comparator-pspicefiles/orcad_comparator.lib" 
+* From [PSPICE NETLIST] section of C:\Users\alkinanl\cdssetup\OrCAD_PSpice\24.1.0\PSpice.ini file:
+.lib "nom.lib" 
+
+*Analysis directives: 
+.TRAN  0 0.1 0 
+.OPTIONS ADVCONV
+.AUTOCONVERGE ITL1=1000 ITL2=1000 ITL4=1000 RELTOL=0.05 ABSTOL=1.0E-6 VNTOL=.001 PIVTOL=1.0E-10 
+.PROBE64 V(alias(*)) I(alias(*)) W(alias(*)) D(alias(*)) NOISE(alias(*)) 
+.INC "..\SCHEMATIC1.net" 
+
+
+
+**** INCLUDING SCHEMATIC1.net ****
+* source ORCAD_COMPARATOR
+M_M1         N00630 N01600 N00562 N00562 NMOS_LVL1  
++ L=5u  
++ W=5u         
+M_M2         N06648 N02275 N00562 N00562 NMOS_LVL1  
++ L=5u  
++ W=5u         
+M_M3         N00630 N00630 N01096 N01096 PMOS_LVL1  
++ L=5u  
++ W=5u         
+M_M4         N06648 N00630 N01096 N01096 PMOS_LVL1  
++ L=5u  
++ W=5u         
+M_M5         N00620 N00620 0 0 NMOS_LVL1  
++ L=5u  
++ W=5u         
+M_M6         N00562 N00620 0 0 NMOS_LVL1  
++ L=5u  
++ W=5u         
+M_M7         N00708 N06648 N01096 N01096 PMOS_LVL1  
++ L=5u  
++ W=5u         
+M_M8         N00708 N00620 0 0 NMOS_LVL1  
++ L=5u  
++ W=5u         
+M_M9         N07301 N00708 N01096 N01096 PMOS_LVL1  
++ L=5u  
++ W=5u         
+M_M10         N07301 N00708 0 0 NMOS_LVL1  
++ L=5u  
++ W=5u         
+I_IREF         N01096 N00620 DC 10uAdc  
+V_VDD         N01096 0 3Vdc
+V_V1         N01600 0  
++SIN 1.2 10m 1000 0 0 0
+V_V2         N02275 0 1.2Vdc
+
+**** RESUMING transient_test.cir ****
+.END
+
+WARNING(ORPSIM-15676): LAMBDA for MOSFET model PMOS_LVL1 is unusually large and might cause non-convergence
+
+**** 03/11/26 09:53:16 *** PSpice 24.1.0 (4 September 2024) *** ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-transient_test"  [ C:\Users\alkinanl\Desktop\Analog-Comparator-IC-Design\SPICE\Comparator_Design\OrCAD X Cap
+
+
+ ****     MOSFET MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               NMOS_LVL1       PMOS_LVL1       
+               NMOS            PMOS            
+       LEVEL    1               1            
+           L  100.000000E-06  100.000000E-06 
+           W  100.000000E-06  100.000000E-06 
+          LD   80.000000E-09   90.000000E-09 
+         VTO     .7             -.8          
+          KP  134.288900E-06   38.368260E-06 
+       GAMMA     .45             .4          
+         PHI     .9              .8          
+      LAMBDA     .1              .2          
+          IS   10.000000E-15   10.000000E-15 
+          JS   10.000000E-09    5.000000E-09 
+          PB     .9              .9          
+        PBSW     .9              .9          
+          CJ  560.000000E-06  940.000000E-06 
+        CJSW    3.500000E-12    3.200000E-12 
+          MJ     .45                         
+        MJSW     .2              .3          
+        CGSO    0               0            
+        CGDO  400.000000E-12  300.000000E-12 
+        CGBO    0               0            
+        NSUB  900.000000E+12  500.000000E+12 
+         TOX    9.000000E-09    9.000000E-09 
+          XJ    0               0            
+          UO  350             100            
+       UCRIT   10.000000E+03   10.000000E+03 
+      DIOMOD    1               1            
+         VFB    0               0            
+        LETA    0               0            
+        WETA    0               0            
+          U0    0               0            
+        TEMP    0               0            
+         VDD    5               5            
+       XPART    0               0            
+
+
+WARNING(ORPSIM-15676): LAMBDA for MOSFET model PMOS_LVL1 is unusually large and might cause non-convergence
+
+**** 03/11/26 09:53:16 *** PSpice 24.1.0 (4 September 2024) *** ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-transient_test"  [ C:\Users\alkinanl\Desktop\Analog-Comparator-IC-Design\SPICE\Comparator_Design\OrCAD X Cap
+
+
+ ****     INITIAL TRANSIENT SOLUTION       TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+ NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
+
+
+(N00562)     .2672 (N00620)    1.0610 (N00630)    1.7818 (N00708)     .1321     
+
+(N01096)    3.0000 (N01600)    1.2000 (N02275)    1.2000 (N06648)    1.7818     
+
+(N07301)    3.0000 
+
+
+
+
+    VOLTAGE SOURCE CURRENTS
+    NAME         CURRENT
+
+    V_VDD       -2.413E-05
+    V_V1         0.000E+00
+    V_V2         0.000E+00
+
+    TOTAL POWER DISSIPATION   7.24E-05  WATTS
+
+
+
+          JOB CONCLUDED
+ AutoConverge Simulator Options
+ ITL1 = 150
+ ITL2 = 20
+ ITL4 = 10
+ RELTOL = 0.001
+ ABSTOL = 1e-12
+ VNTOL = 1e-06
+ PIVTOL = 1e-13
+
+**** 03/11/26 09:53:16 *** PSpice 24.1.0 (4 September 2024) *** ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-transient_test"  [ C:\Users\alkinanl\Desktop\Analog-Comparator-IC-Design\SPICE\Comparator_Design\OrCAD X Cap
+
+
+ ****     JOB STATISTICS SUMMARY
+
+
+******************************************************************************
+
+
+
+  Total job time (using Solver 1)   =         .08
+
+
 **** 03/18/26 09:17:49 *** PSpice 24.1.0 (4 September 2024) *** ID# 0 ********
 
  ** Profile: "SCHEMATIC1-transient_test"  [ C:\Users\alkinanl\Desktop\Analog-Comparator-IC-Design\SPICE\Comparator_Design\OrCAD X Cap

@@ -28,33 +28,13 @@
                     ("value"	"")
                     ("pspice_param"	"M")
                 )
-                ("NRB"
-                    ("value"	"")
-                    ("pspice_param"	"NRB")
+                ("W"
+                    ("value"	"5u")
+                    ("pspice_param"	"W")
                 )
-                ("NRG"
-                    ("value"	"")
-                    ("pspice_param"	"NRG")
-                )
-                ("NRS"
-                    ("value"	"")
-                    ("pspice_param"	"NRS")
-                )
-                ("NRD"
-                    ("value"	"")
-                    ("pspice_param"	"NRD")
-                )
-                ("PS"
-                    ("value"	"")
-                    ("pspice_param"	"PS")
-                )
-                ("PD"
-                    ("value"	"")
-                    ("pspice_param"	"PD")
-                )
-                ("AS"
-                    ("value"	"")
-                    ("pspice_param"	"AS")
+                ("L"
+                    ("value"	"5u")
+                    ("pspice_param"	"L")
                 )
                 ("AD"
                     ("value"	"")
@@ -562,6 +542,38 @@
             ("pspice_path"	"I_IREF")
             ("level"	"0")
             ("model_params"
+                ("BiasValue Power"
+                    ("value"	"0W")
+                    ("pspice_param"	"BiasValue Power")
+                )
+                ("VAMPL"
+                    ("value"	"10m")
+                    ("pspice_param"	"VAMPL")
+                )
+                ("FREQ"
+                    ("value"	"1000")
+                    ("pspice_param"	"FREQ")
+                )
+                ("VOFF"
+                    ("value"	"1.2")
+                    ("pspice_param"	"VOFF")
+                )
+                ("PHASE"
+                    ("value"	"0")
+                    ("pspice_param"	"PHASE")
+                )
+                ("DF"
+                    ("value"	"0")
+                    ("pspice_param"	"DF")
+                )
+                ("TD"
+                    ("value"	"0")
+                    ("pspice_param"	"TD")
+                )
+                ("AC"
+                    ("value"	"")
+                    ("pspice_param"	"AC")
+                )
                 ("DC"
                     ("value"	"1uAdc")
                     ("pspice_param"	"DC")
