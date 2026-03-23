@@ -29,8 +29,8 @@ class model:
     
     def get_COX(self) -> float: 
         return self.COX
-
-    def cal_vth(self, VSB: float = 0.0) -> float:
+    
+    def get_vth(self, VSB: float = 0.0) -> float:
         return self.VTO + self.GAMMA * (np.sqrt(np.abs(VSB + self.PHI)) - np.sqrt(np.abs(self.PHI)))
     
 
