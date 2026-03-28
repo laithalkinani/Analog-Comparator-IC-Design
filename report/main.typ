@@ -41,7 +41,11 @@
 
 = Theory
 
-The operational transconductance amplifier (OTA) is the beating heart of the comparator, and is a quintessential component of many analog and mixed-signal designs.
+The operational transconductance amplifier (OTA) is the beating heart of the comparator, and is a quintessential component of many analog and mixed-signal designs. We break up this design in three large steps: creating the requirements for the OTA (first stage), then the common source amplifier (second stage), then finally the CMOS inverter at the last stage. We focus on tuning the size of the transistors to fit our system requirements.
+#figure(
+  image("assets/COMPARATOR_CIRCUIT_ORCAD.png", width: 80%),
+  caption: [Comparator schematic]
+)
 
 == Large-Signal Analysis
 
@@ -342,9 +346,50 @@ We built the circuit in both OrCAD and LTSpice to compare results and found that
 
 We used a "custom" library for the MOS devices, taken from Table 2.1 in Razavi: //markdown here TODO
 
+```md
+* NMOS model from table 2.1
+.MODEL NMOS_LVL1 NMOS(LEVEL=1 VTO=0.7 GAMMA=0.45 PHI=0.9 NSUB=9e+14 LD=0.08e-6 UO=350 LAMBDA=0.1 TOX=9e-9 PB=0.9 CJ=0.56e-3 CJSW=0.35e-11 MJ=0.45 MJSW=0.2 CGDO=0.4e-9 JS=1.0e-8)
+
+* PMOS model from table 2.1 
+.MODEL PMOS_LVL1 PMOS(LEVEL=1 VTO=-0.8 GAMMA=0.4 PHI=0.8 NSUB=5e+14 LD=0.09e-6 UO=100 LAMBDA=0.2 TOX=9e-9 PB=0.9 CJ=0.94e-3 CJSW=0.32e-11 MJ=0.5 MJSW=0.3 CGDO=0.3e-9 JS=0.5e-8)
+
+```
+
+We ran a transient simulation and obtained these operating points:
+
+#figure(
+  image("assets/COMPARATOR_OPERATING_POINTS.png", width: 80%),
+  caption: [DC Operating Points]
+)
+
+Note: we left $V_"in2"$ as a DC source in OrCAD for validation. In our LTSpice model we changed $V_"in2"$ to be a sinusoid and we found the same simulation results. I will say that, for the next iteration of this design, we should "push" the limits of our circuit by testing the comparison logic at varying frequencies and amplitudes. We didn't have time to do this, but it would have given some more data to discuss later on when we investigate duty cycle distortion, noise margin, and other higher-order effects. 
+
+== Results
+
+We can see that the comparator logic works as intended. When we zoom in, we can see where the theory faces its limitations: there are significant nonlinearities that produce distortions in our output, that we didn't quite account for in our design. 
+
+#figure(
+  image("figures/transient_response_10ms.png", width: 80%),
+  caption: [Transient simulation]
+)
+#figure(
+  image("figures/Transient_Response.png", width: 80%),
+  caption: [Transient simulation zoomed in to observe the output wave distortion, likely caused by MOSFET nonlinearities]
+)
+
+
+== Next Steps
+
+If we had more time, we would have ran AC signal sweeps to determine noise bandwidth of the signal. Noise analysis is an essential part of any analog circuit design that we completely omitted from this study for brevity. These results would have helped us quantify the noise margin issue that we will later discuss with regards to the common source stage. 
+
 = Layout
 
 We need to decouple layout from the schematic when we consider CMOS design. A lot of the issues that inform layout decisions are straight up ignored in simulation. Here, the schematic is, at best, a suggestion for the physical layout designer to follow. It gives us a floorplan. Beyond that, we're largely on our own. 
+
+#figure(
+  image("assets/COMP_LAYOUT_ANNOTATED.jpeg", width: 80%),
+  caption: [Transistor layout, annotated]
+)
 
 == Substrate Gradient
 
@@ -361,6 +406,22 @@ The wide transistors in the design, particularly the differential pair and the c
 For the differential pair M1/M2, each transistor is folded into multiple fingers. The width of each finger is chosen such that the finger's distributed resistance is less than the inverse transconductance of the finger. With a sheet resistance of the gate polysilicon approximately 30 Ω/□, the number of fingers is selected to ensure the gate thermal noise voltage remains well below the channel thermal noise. Dummy fingers are added at both ends of the array to buffer the active fingers from STI-induced stress, which would otherwise modulate the threshold voltage and carrier mobility.
 
 The current mirror transistors M5 and M6 are also implemented with multiple fingers to improve matching and reduce noise. The layout follows a unit-cell approach: a minimum-sized finger serves as the unit transistor, and larger devices are constructed by placing multiple unit cells in parallel. This approach allows precise current ratios to be maintained despite process variations.
+
+It's most important that we implement our multi-finger method to the differential pair transistors, M1 and M2. We desperately need these two transistors to have symmetry, lest we incur mismatch issues that we will discuss in more detail later. M3 and M4 also have to be symmetric and are also arranged as multi-fingers, but we will see that the design approach for M1 and M2 is more nuanced.
+We arrange the differential pair as two rows of six column fingers in accordance with the common centroid design philosophy. When we look at our differential pair in the layout, we have it arranged as:
+
+sM1dM2sM2dM1sM1dM2s
+
+sM2dM1sM1dM2sM2dM1s
+
+Where d and s are the drain and source respectively. M1 and M2 are the very wide transistors on the bottom, M3 and M4 are the smaller transistors on the top, in accordance with their size ratios. 
+
+#figure(
+  image("figures/DIFF_AMP_LAYOUT.jpeg", width: 50%),
+  caption: [Layout zoomed in on the differential pair. Notice the wide gates separated into fingers (the red color) where M1 and M2 are separated into two rows, six columns of multi-fingers. M3 and M4, the PMOS current mirror pair, are connected by drain and shown at the top of the image, also drawn as multi-fingers.]
+)
+
+
 
 == Design Rule Check
 
@@ -470,6 +531,8 @@ Mismatch is another key issue that can really only be resolved in layout. In the
 Mismatch is caused by microscopic variations in device dimensions (Razavi). Having mismatch between two devices in the OTA can cause, among other things, a DC offset where $V_"out" != 0$ when $V_"in" = 0$.  This reduces the precision of which signals can be measured. It introduces harmonics into the OTA equations related to the dimension mismatches. It also, notably, increases the channel capacitance. 
 
 = Conclusion
+
+
 
 = References
 
