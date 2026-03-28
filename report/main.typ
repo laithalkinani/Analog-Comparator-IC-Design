@@ -39,6 +39,10 @@
   ],
 )
 
+= Credits
+
+I completed most of the hand-calculations, the schematic design, and study of the second-order circuit effects. My lab partner, Abdullah, took care of the layout process. Both sections of the project required an equal amount of work, and I am thankful to him for stepping up and doing a fantastic job at layout and layout analysis.
+
 = Theory
 
 The operational transconductance amplifier (OTA) is the beating heart of the comparator, and is a quintessential component of many analog and mixed-signal designs. We break up this design in three large steps: creating the requirements for the OTA (first stage), then the common source amplifier (second stage), then finally the CMOS inverter at the last stage. We focus on tuning the size of the transistors to fit our system requirements.
@@ -271,11 +275,11 @@ The questions we have to answer here are:
 
 This topology is essentially a CS stage with current source load.
 
-Here, $A_v = -g_"m8" (r_"o8" || r_"o7")$. However, the CS stage is pretty susceptible to channel length modulation. According to Razavi, the output bias voltage of the CS stage with current load is not well-defined without feedback (Razavi, 3.3.3). Since the gain is proportional to the drain current, since $r_o prop L\/I_d$. Thus, a longer transistor yields a higher voltage gain. The purpose of the CS stage is to increase swing, so that the inverter in the next stage is appropriately driven.
+Here, $A_v = -g_"m8" (r_"o8" || r_"o7")$. However, the CS stage is pretty susceptible to channel length modulation. According to Razavi, the output bias voltage of the CS stage with current load is not well-defined without feedback @razavi2016design. the gain is proportional to the drain current, since $r_o prop L\/I_d$. Thus, a longer transistor yields a higher voltage gain. The purpose of the CS stage is to increase swing, so that the inverter in the next stage is appropriately driven.
 
 From Razavi, the intrinsic gain of the CS stage with current source load is given as:
 
-$ g_"m1" r_"o1" = sqrt(K_n (W\/L)_8 I_d) dot 1 / (lambda_n I_d) $
+$ g_"m1" r_"o1" = sqrt(K_n (W\/L)_8 I_d) dot 1 / (lambda_n I_d) $ 
 
 Let's consider the maximum output swing levels of the CS stage.
 
@@ -328,7 +332,7 @@ Which matches closely to CS_OUT (the error difference is due to rounding when I 
 From this, we further find that:
 $ (W\/L)_P = mu_n / mu_p dot (W\/L)_N $
 
-Where $mu_n = 350$ and $mu_p = 100$ (Table 2.1 Razavi).
+Where $mu_n = 350$ and $mu_p = 100$ (Table 2.1 Razavi) @razavi2016design.
 
 Thus:
 $ (W\/L)_P = 3.5 (W\/L)_N $
@@ -395,7 +399,7 @@ We need to decouple layout from the schematic when we consider CMOS design. A lo
 
 For the differential pair (M1/M2) and the current mirror pair (M3/M4), maintaining symmetry is critical to minimize input-referred offset and common-mode errors. As discussed in the theory section, we assume perfect matching, but in layout, this must be enforced. Both transistors in each pair are laid out with identical orientation to avoid process-dependent asymmetries. The gate-aligned configuration is preferred over parallel-gate structures to mitigate the effects of gate shadowing during source/drain implantation.
 
-To suppress the effect of linear process gradients across the chip, a common-centroid layout is employed for the critical pairs. M1 and M2 are each split into two halves and placed diagonally opposite each other. Similarly, M3 and M4 are interdigitated. This first-order cancellation of gradients in oxide thickness, doping concentration, and other parameters ensures that the symmetry assumed in hand calculations is preserved in silicon.
+To suppress the effect of linear process gradients across the chip, a common-centroid layout is employed for the critical pairs. M1 and M2 are each split into two halves and placed diagonally opposite each other. Similarly, M3 and M4 are interdigitated. This first-order cancellation of gradients in oxide thickness, doping concentration, and other parameters ensures that the symmetry assumed in hand calculations is preserved in silicon @hastings2018art.
 
 The surrounding environment is also matched. Dummy transistors are placed at the boundaries of the active arrays to ensure that each finger sees identical STI stress and well proximity effects. NMOS dummy fingers are tied to GND and PMOS dummy fingers are tied to VDD to mitigate the phenomenon of charge building up on the poly layer, which may arc to an adjacent finger and damage the silicon. Tying dummy fingers to GND/VDD, respectively, also mitigates the antenna effect (Hastings). Metal lines carrying bias currents or clocks are routed symmetrically with respect to the differential pairs, and where asymmetry is unavoidable, dummy lines are added to balance parasitic coupling.
 
@@ -403,7 +407,7 @@ The surrounding environment is also matched. Dummy transistors are placed at the
 
 The wide transistors in the design, particularly the differential pair and the current mirror devices, are implemented using multifinger structures to reduce both the source/drain junction area and the gate resistance. The gate resistance must be kept sufficiently low to minimize thermal noise, especially given the comparator's role in low-noise applications.
 
-For the differential pair M1/M2, each transistor is folded into multiple fingers. The width of each finger is chosen such that the finger's distributed resistance is less than the inverse transconductance of the finger. With a sheet resistance of the gate polysilicon approximately 30 Ω/□, the number of fingers is selected to ensure the gate thermal noise voltage remains well below the channel thermal noise. Dummy fingers are added at both ends of the array to buffer the active fingers from STI-induced stress, which would otherwise modulate the threshold voltage and carrier mobility.
+For the differential pair M1/M2, each transistor is folded into multiple fingers. The width of each finger is chosen such that the finger's distributed resistance is less than the inverse transconductance of the finger. With a sheet resistance of the gate polysilicon approximately 30 Ω/□, the number of fingers is selected to ensure the gate thermal noise voltage remains well below the channel thermal noise. Dummy fingers are added at both ends of the array to buffer the active fingers from STI-induced stress, which would otherwise modulate the threshold voltage and carrier mobility @hastings2018art.
 
 The current mirror transistors M5 and M6 are also implemented with multiple fingers to improve matching and reduce noise. The layout follows a unit-cell approach: a minimum-sized finger serves as the unit transistor, and larger devices are constructed by placing multiple unit cells in parallel. This approach allows precise current ratios to be maintained despite process variations.
 
@@ -489,7 +493,7 @@ The ideal duty cycle is always exactly 50%, in accordance with the duty cycle of
 
 At its core, duty cycle distortion originates in variations from ON/OFF times in the switching period. 
 
-Essentially, there is rise/fall time asymmetry that, when adding up, causes duty cycle distortion. In noisy systems, duty cycle distortion is amplified when a noisy signal is injected into a lossy channel (Cadence).
+Essentially, there is rise/fall time asymmetry that, when adding up, causes duty cycle distortion. In noisy systems, duty cycle distortion is amplified when a noisy signal is injected into a lossy channel @cadence2023duty.
 
 In our case, rise/fall time asymmetry is the main culprit of duty cycle distortion. 
 
@@ -528,13 +532,29 @@ We have already seen the effects of nonlinearity in our CS stage, causing cs_out
 
 Mismatch is another key issue that can really only be resolved in layout. In the Theory section, we assumed perfect symmetry between the OTA pairs: M1=M2, and M3=M4. This allows us to complete our analysis of OTA behavior while ignoring an important factor that does show up in real circuits: threshold voltage variation, $Delta V_"th"$. 
 
-Mismatch is caused by microscopic variations in device dimensions (Razavi). Having mismatch between two devices in the OTA can cause, among other things, a DC offset where $V_"out" != 0$ when $V_"in" = 0$.  This reduces the precision of which signals can be measured. It introduces harmonics into the OTA equations related to the dimension mismatches. It also, notably, increases the channel capacitance. 
+Mismatch is caused by microscopic variations in device dimensions @razavi2016design. Having mismatch between two devices in the OTA can cause, among other things, a DC offset where $V_"out" != 0$ when $V_"in" = 0$.  This reduces the precision of which signals can be measured. It introduces harmonics into the OTA equations related to the dimension mismatches. It also, notably, increases the channel capacitance. 
 
 = Conclusion
 
+This project successfully demonstrated the complete design flow for a CMOS comparator, from hand calculations and schematic capture to layout implementation and simulation verification. The three-stage architecture—consisting of a five-transistor OTA, a common-source gain stage, and a CMOS inverter—achieved the targeted differential gain of approximately 67 V/V while maintaining proper biasing with a 3 V supply. The hand calculations provided a solid foundation for sizing the transistors, with the differential pair M1/M2 sized at $(W/L) = 9$, the tail current mirror at $(W/L)_6 = 12$, and the inverter stage sized with $(W/L)_9 = 4$ and $(W/L)_10 = 1$.
 
+The layout phase revealed critical considerations that schematic simulation alone cannot capture. Common-centroid placement of the differential pair and current mirror effectively cancels first-order process gradients, while multifinger folding of wide transistors reduces gate resistance and mitigates STI-induced stress. Dummy fingers tied to GND and VDD address both STI stress and the antenna effect, ensuring reliability. The DRC verification using MAGIC EDA confirmed compliance with SCMOS rules at $lambda = 0.25 mu m$, with all dimensions scaled to integer multiples of the minimum feature size.
 
-= References
+Simulation results validated the comparator's functionality but also exposed practical limitations that hand calculations underestimated. The most significant issue identified is the instability of the common-source output stage's bias point. With $(W/L)_8 = 8$, the stage exhibited severe clipping to ground during dynamic operation, forcing an empirical reduction to $(W/L)_8 = 6$ to maintain reasonable operation. This instability stems from the inherently ill-defined DC operating point of current-source-loaded amplifiers—a phenomenon Razavi notes but one that becomes acutely problematic when driving a subsequent inverter stage. The resulting duty cycle distortion and reduced noise margin during saturation periods represent genuine reliability concerns for high-precision applications.
+
+== Future Work
+
+Several avenues for improvement emerged from this analysis. First and foremost, adding source degeneration to M8—implemented via a diode-connected NMOS at the source—would provide the negative feedback necessary to stabilize cs_out and linearize the stage's transfer characteristic. This modification would directly address the clipping issue while preserving the OTA's high gain.
+
+Second, a more rigorous noise analysis is essential. AC noise simulations would quantify the input-referred noise contributions from each stage and establish the comparator's minimum detectable signal. This analysis would also clarify the noise margin limitations observed during cs_out saturation.
+
+Third, frequency characterization across a range of input amplitudes would reveal the comparator's maximum operating frequency and establish its propagation delay characteristics. Our current transient simulations at a single frequency provide functional verification but insufficient data for performance benchmarking.
+
+Fourth, post-layout parasitic extraction and back-annotation would quantify the impact of layout-induced parasitics on high-frequency performance. The multifinger structures, while beneficial for matching and noise, introduce additional junction capacitance that may limit bandwidth.
+
+Finally, a more robust current reference—perhaps derived from a bandgap core—would eliminate the external $I_"ref"$ dependency and improve the circuit's practicality as a standalone comparator.
+
+The fundamental trade-off between gain and stability remains central to comparator design. Future iterations should explore alternative architectures, such as a folded-cascode OTA or a regenerative latch following the preamplifier, to achieve both high gain and well-defined output swing without the instability observed in this implementation.
 
 #pagebreak()
-#include("citations.bib")
+#bibliography("citations.bib")
