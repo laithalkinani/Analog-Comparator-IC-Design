@@ -41,7 +41,7 @@
 
 = Credits
 
-I completed most of the hand-calculations, the schematic design, and study of the second-order circuit effects. My lab partner, Abdullah, took care of the layout process. Both sections of the project required an equal amount of work, and I am thankful to him for stepping up and doing a fantastic job at layout and layout analysis.
+While my partner handled the bulk of the hand-calculations, schematic design, and the study of second-order circuit effects, I focused on the layout process, floorplan analysis, and the development and initial testing of the system prototype. Both phases of the project demanded an equal level of effort, and I appreciate the collaborative dynamic that allowed us to divide the workload effectively. The transition from schematic to a functional physical layout and prototype was a significant undertaking, and I am pleased with the results of the initial testing phase.
 
 = Theory
 
@@ -55,35 +55,35 @@ The operational transconductance amplifier (OTA) is the beating heart of the com
 
 We rely heavily on Razavi for this analysis.
 
-M1 and M2 are the NMOS diff pair. M3 and M4 are the PMOS current mirror pair sitting above M1 and M2 - their purpose is to keep the current saturated through M1 and M2, essentially keeping the pair in saturation. How does this work though?
+$M_1$ and $M_2$ are the NMOS diff pair. $M_3$ and $M_4$ are the PMOS current mirror pair sitting above $M_1$ and $M_2$ - their purpose is to keep the current saturated through $M_1$ and $M_2$, essentially keeping the pair in saturation. How does this work though?
 
-When $V_"in1"$ is more negative than $V_"in2"$, M1 is off, so are M3 and M4 (the diff pair and the PMOS current mirror). Thus, $V_"out"$, sitting at the drain of M2, is zero.
+When $V_"in1"$ is more negative than $V_"in2"$, $M_1$ is off, so are $M_3$ and $M_4$ (the diff pair and the PMOS current mirror). Thus, $V_"out"$, sitting at the drain of $M_2$, is zero.
 
-When $V_"in1"$ approaches $V_"in2"$, M1 turns on, drawing a fraction of $I_"ss"$ (the tail current) from M3, which turns M4 on. Here, both M4 and M2 are saturated, providing a high gain.
+When $V_"in1"$ approaches $V_"in2"$, $M_1$ turns on, drawing a fraction of $I_"ss"$ (the tail current) from $M_3$, which turns $M_4$ on. Here, both $M_4$ and $M_2$ are saturated, providing a high gain.
 
 Finally, when $V_"in1" = V_"in2"$ (DC values), $V_"out" = V_"DD" - |V_"gs3"|$. This is where we want the $V_"out"$ DC operating to sit at, which should roughly be equal to $V_"out" = V_"DD" \/ 2$.
 
-This, of course, assumes perfect symmetry between M3/M4, and between M1/M2. This is an assumption we will have to contend with later on.
+This, of course, assumes perfect symmetry between $M_3$/$M_4$, and between $M_1$/$M_2$. This is an assumption we will have to contend with later on.
 
-The OTA demonstrates "push-pull" action between M1 and M2, each hogging $I_"ss"$, turning off the other side and leading to a single-ended output. At equilibrium, the current through each "half" (since it's not truly symmetrical) of the OTA is equal to $I_"ss" \/ 2$.
+The OTA demonstrates "push-pull" action between $M_1$ and $M_2$, each hogging $I_"ss"$, turning off the other side and leading to a single-ended output. At equilibrium, the current through each "half" (since it's not truly symmetrical) of the OTA is equal to $I_"ss" \/ 2$.
 
 The OTA is followed by a common-source (CS) stage amplifier to boost the initial gain, then a CMOS inverter to rail the output up to $V_"DD"$ and down to GND.
 
 On the input side:
 
-We define $V_p$ as the "virtual" voltage at the source of M1 and M2, and the drain of M6 the tail NMOS.
+We define $V_p$ as the "virtual" voltage at the source of $M_1$ and $M_2$, and the drain of $M_6$ the tail NMOS.
 
 For proper operation:
 $ V_"in,cm" >= V_"gs1" + (V_"gs6" - V_"th6") $
 
-The drain voltages of M1 and M2 must be, at minimum:
+The drain voltages of $M_1$ and $M_2$ must be, at minimum:
 $ (V_"gs1" - V_"th1") + V_"ds6(min)" $
 
-Essentially, this means the drain voltage of the differential pair must be two overdrive voltages above GND. Intuitively, this makes sense: $V_p$ must be at $V_"ds6(min)"$, and thus that is the "relative ground" to M1 and M2, so their $V_"ds"$ must sit at one overdrive voltage above that!
+Essentially, this means the drain voltage of the differential pair must be two overdrive voltages above GND. Intuitively, this makes sense: $V_p$ must be at $V_"ds6(min)"$, and thus that is the "relative ground" to $M_1$ and $M_2$, so their $V_"ds"$ must sit at one overdrive voltage above that!
 
-When designing this amplifier, we have to make sure that all the transistors are in saturation. We make use of current mirrors at M5 and M6 to do so. We have to size the transistors appropriately.
+When designing this amplifier, we have to make sure that all the transistors are in saturation. We make use of current mirrors at $M_5$ and $M_6$ to do so. We have to size the transistors appropriately.
 
-First, we can focus on the OTA and make sure that the $I_"ss"$ tail current is high enough to keep the transistors in operation. We constrain the design, by nature of the OTA, such that M1 and M2 are symmetrical and M3 and M4 are symmetrical. M6 boosts the current of M5. $I_"ref"$ is given as $1 mu A$, $V_"dd"$ is given as 3V. Later on, we will use a diode-connected FET to generate $I_"ref"$ in layout.
+First, we can focus on the OTA and make sure that the $I_"ss"$ tail current is high enough to keep the transistors in operation. We constrain the design, by nature of the OTA, such that $M_1$ and $M_2$ are symmetrical and $M_3$ and $M_4$ are symmetrical. $M_6$ boosts the current of $M_5$. $I_"ref"$ is given as $1 mu A$, $V_"dd"$ is given as 3V. Later on, we will use a diode-connected FET to generate $I_"ref"$ in layout.
 
 == Small-Signal Analysis
 
@@ -95,7 +95,7 @@ $ |I_"d1"| = |I_"d3"| = |I_"d4"| = g_"m1,2" v_"in" $
 
 Where $v_"in"$ is the common mode input to the differential pair.
 
-Thus, $G_m = g_"m1,2"$ since M1 and M2 are symmetrical.
+Thus, $G_m = g_"m1,2"$ since $M_1$ and $M_2$ are symmetrical.
 
 Looking at the small signal model of the OTA, and noting that $r_"o1" = r_"o2"$, we see that:
 
@@ -118,7 +118,7 @@ $ r_"o1" approx 1 / (lambda_n dot I_d) $
 We have some questions that we must progressively answer to design this comparator.
 
 - What is an adequate $I_"ss"$?
-- What is an adequate $V_"in,CM"$ to keep M1 and M2 in saturation?
+- What is an adequate $V_"in,CM"$ to keep $M_1$ and $M_2$ in saturation?
 - How high do we want our gain?
 - What is our maximum output swing?
 
@@ -136,7 +136,7 @@ $ A_v = sqrt(4 K_n (W\/L)_1 I_d) dot 10 / (3 I_d) $
 Where, ignoring channel length modulation (for now!!!):
 $ I_d = K_n (W\/L)_1 V_"ov"^2 $
 
-Next, let's make a healthy assumption and fix the overdrive voltage $V_"ov" = V_"gs1" - V_"th1"$ of M1 to 0.1V. This knocks off one of our variables. We can substitute $I_d$ into the gain equation to get:
+Next, let's make a healthy assumption and fix the overdrive voltage $V_"ov" = V_"gs1" - V_"th1"$ of $M_1$ to 0.1V. This knocks off one of our variables. We can substitute $I_d$ into the gain equation to get:
 
 $ A_v = 2 / (V_"ov" (lambda_n + lambda_p)) $
 
@@ -216,13 +216,13 @@ W (um) | W/L  | Id (uA)  | gm (uA/V)
  21060 um |  117 |  78.6240 uA | 1572.4800 uA/V
 ```
 
-Let's select $(W\/L)_1 = (W\/L)_2 = 9$, to get $6.0480 mu A$ as our $I_d$ through M1 and M2, and $I_"ss" = 12.06 mu A$.
+Let's select $(W\/L)_1 = (W\/L)_2 = 9$, to get $6.0480 mu A$ as our $I_d$ through $M_1$ and $M_2$, and $I_"ss" = 12.06 mu A$.
 
 Now, since $I_"ss" = ((W\/L)_6 \/ (W\/L)_5) dot I_"ref" approx 12$, so $(W\/L)_6 approx 12 (W\/L)_5$.
 
 Let's fix $(W\/L)_5 = 1$ so $(W\/L)_6 = 12$.
 
-Now, let's find $V_x$ - the input voltage to M6, the voltage at the gate of our tail current mirror - which also biases the NMOS of the CS stage.
+Now, let's find $V_x$ - the input voltage to $M_6$, the voltage at the gate of our tail current mirror - which also biases the NMOS of the CS stage.
 
 $ I_"ss" = K_n (W\/L)_6 (V_x - V_"th")^2 arrow.r V_x = sqrt(I_"ss" \/ (K_n (W\/L)_6)) + 0.7 $
 
@@ -236,13 +236,13 @@ $ V_"in,cm" >= 0.8 + (0.8225 - 0.7) arrow.r V_"in,cm" = V_"g1" >= 0.9225 "V" $
 
 So, let's be safe and pick $V_"in,cm" = 1.2 "V"$.
 
-So far, we have found the aspect ratios for M1, M2, M5, and M6. Now let's find the ratios for the top PMOS current mirrors, M3 and M4.
+So far, we have found the aspect ratios for $M_1$, $M_2$, $M_5$, and $M_6$. Now let's find the ratios for the top PMOS current mirrors, $M_3$ and $M_4$.
 
 Remember: we want $V_"out,DC"$ to sit around $V_"DD"\/2$, but it's defined by $V_"out,DC" = V_"DD" - |V_"DS3"|$.
 
-Where $|V_"DS3"| = |V_"SG3"|$ since M3 is diode connected.
+Where $|V_"DS3"| = |V_"SG3"|$ since $M_3$ is diode connected.
 
-Since we know that $I_"d1" = I_"d3"$ is constant, and since we want to force M3 to be in saturation, let's use the formula of $I_"d3"$ and solve for $(W\/L)_3$:
+Since we know that $I_"d1" = I_"d3"$ is constant, and since we want to force $M_3$ to be in saturation, let's use the formula of $I_"d3"$ and solve for $(W\/L)_3$:
 
 $ (W\/L)_3 = I_D / (K_p dot V_"ov3"^2) $
 
@@ -266,12 +266,12 @@ Now, we have finally sized all the transistors in the OTA and bias current mirro
 
 == CS Stage
 
-The CS stage is here to increase the output swing of the differential amplifier. We consider $V_y$ to be the output voltage of the CS stage. The input to M7, the PMOS, is $V_"out,DC"$ from the diff pair - we'll hereby call $V_"out,DC"$ as diff_out, and $V_y$ = cs_out.
+The CS stage is here to increase the output swing of the differential amplifier. We consider $V_y$ to be the output voltage of the CS stage. The input to $M_7$, the PMOS, is $V_"out,DC"$ from the diff pair - we'll hereby call $V_"out,DC"$ as diff_out, and $V_y$ = cs_out.
 
 The questions we have to answer here are:
 
 - What do we want the output bias voltage to sit at?
-- How do we then size M7 and M8, the PMOS and NMOS, respectively?
+- How do we then size $M_7$ and $M_8$, the PMOS and NMOS, respectively?
 
 This topology is essentially a CS stage with current source load.
 
@@ -283,11 +283,11 @@ $ g_"m1" r_"o1" = sqrt(K_n (W\/L)_8 I_d) dot 1 / (lambda_n I_d) $
 
 Let's consider the maximum output swing levels of the CS stage.
 
-At the very top, M7 is at the edge of saturation at $"CS\_OUT" = V_"DD" - |V_"GS7" - V_"TH,P"|$ and at the bottom swing, $"CS\_OUT" = V_"IN,COUT" - V_"TH,n"$. So CS_OUT is bound by these two levels. We know that $V_"IN,COUT"$ is the $V_x$ level we computed earlier, which is equal to $V_x = 0.8225 "V"$.
+At the very top, $M_7$ is at the edge of saturation at $"CS\_OUT" = V_"DD" - |V_"GS7" - V_"TH,P"|$ and at the bottom swing, $"CS\_OUT" = V_"IN,COUT" - V_"TH,n"$. So CS_OUT is bound by these two levels. We know that $V_"IN,COUT"$ is the $V_x$ level we computed earlier, which is equal to $V_x = 0.8225 "V"$.
 
 Thus, the low level of $"CS\_OUT" = 0.8225 - 0.7 = 0.1225 "V"$.
 
-We want to avoid clipping, so we have to keep both M7 and M8 in saturation, but the CS_OUT level is also unstable without feedback. We also want to keep $L$ fixed for simplicity of layout.
+We want to avoid clipping, so we have to keep both $M_7$ and $M_8$ in saturation, but the CS_OUT level is also unstable without feedback. We also want to keep $L$ fixed for simplicity of layout.
 
 We need to find $V_"GS7"$ to see what CS_OUT might be, despite it being ill-defined.
 
@@ -295,7 +295,7 @@ So, if we know that $0.1225 < "CS\_OUT" < V_"DD" - |V_"SG7" - V_"TH,P"|$, let's 
 
 Adding up those two values, where $V_"SG7" = 3 - 1.639 "V"$, we get $"CS\_OUT" = 1.28075 "V"$.
 
-We also see that M8 is driven by $V_x$, which is the current mirror output voltage from M5. Which means we can size M8 to provide enough current to put M7 and M8 in saturation, while keeping the output voltage swing level in check.
+We also see that $M_8$ is driven by $V_x$, which is the current mirror output voltage from $M_5$. Which means we can size $M_8$ to provide enough current to put $M_7$ and $M_8$ in saturation, while keeping the output voltage swing level in check.
 
 We see that, since $(W\/L)_5 = 1$, $I_"d8" = (W\/L)_8 dot I_"ref"$.
 
@@ -309,7 +309,7 @@ $ (W\/L)_8 \/ (W\/L)_7 = 8.12 $
 
 So, we have some control here over the aspect ratios.
 
-Now, from the current through M8, we have:
+Now, from the current through $M_8$, we have:
 $ I_"d8" = K_n (W\/L)_8 (0.8225 - 0.7)^2 (1 + 0.1(1.28075 - 0.7)) $
 $ (W\/L)_8 \/ (W\/L)_7 dot I_"ref" = K_n (W\/L)_8 (0.8225 - 0.7)^2 (1 + 0.1(1.28075 - 0.7)) $
 
@@ -317,13 +317,13 @@ We get $(W\/L)_7 approx 0.93$, so we will push it to 1.
 
 Thus, to keep CS_OUT at 1.28075 V, we get $(W\/L)_8 = 8.12$.
 
-However - in practice - we see significant duty cycle distortion with this aspect ratio of M8. So, by inspection, we reduce it to 6. We will discuss these adjustments to second-order effects in a later section.
+However - in practice - we see significant duty cycle distortion with this aspect ratio of $M_8$. So, by inspection, we reduce it to 6. We will discuss these adjustments to second-order effects in a later section.
 
 == The CMOS Inverter
 
-Here, the idea is that the PMOS at the top (M9) pulls the level up to $V_"DD"$, and the NMOS (M10) pulls it to GND. Therefore, we need the bias of $V_"out"$ as close as possible to 0. M10 acts as a current source pull-up. So, the question here, is how do we size the transistors? We ideally want a high $|A_v|$ around the logic threshold for good noise margins (MIT).
+Here, the idea is that the PMOS at the top ($M_9$) pulls the level up to $V_"DD"$, and the NMOS ($M_10$) pulls it to GND. Therefore, we need the bias of $V_"out"$ as close as possible to 0. $M_10$ acts as a current source pull-up. So, the question here, is how do we size the transistors? We ideally want a high $|A_v|$ around the logic threshold for good noise margins (MIT).
 
-Let's define $V_m$ as the input bias point to the CMOS inverter. We ideally want it at $V_"DD"\/2$, but we actually have $V_m = "cs\_out" = 1.29 "V"$. We define a "drive strength" ratio of $r = sqrt(k_p\/k_n) = 0.53$. Equating the currents of M10 and M9, we get:
+Let's define $V_m$ as the input bias point to the CMOS inverter. We ideally want it at $V_"DD"\/2$, but we actually have $V_m = "cs\_out" = 1.29 "V"$. We define a "drive strength" ratio of $r = sqrt(k_p\/k_n) = 0.53$. Equating the currents of $M_10$ and $M_9$, we get:
 
 $ V_m = (V_"tn" + r(V_"DD" - V_"tp")) / (1 + r) approx 1.233 "V" $
 
@@ -348,7 +348,7 @@ Of course, this is all dependent on the channel-length being relatively large - 
 
 We built the circuit in both OrCAD and LTSpice to compare results and found that they both matched each other.  
 
-We used a "custom" library for the MOS devices, taken from Table 2.1 in Razavi: //markdown here TODO
+We used a "custom" library for the MOS devices, taken from Table 2.1 @razavi2016design: 
 
 ```md
 * NMOS model from table 2.1
@@ -397,9 +397,9 @@ We need to decouple layout from the schematic when we consider CMOS design. A lo
 
 == Substrate Gradient
 
-For the differential pair (M1/M2) and the current mirror pair (M3/M4), maintaining symmetry is critical to minimize input-referred offset and common-mode errors. As discussed in the theory section, we assume perfect matching, but in layout, this must be enforced. Both transistors in each pair are laid out with identical orientation to avoid process-dependent asymmetries. The gate-aligned configuration is preferred over parallel-gate structures to mitigate the effects of gate shadowing during source/drain implantation.
+For the differential pair ($M_1$/$M_2$) and the current mirror pair ($M_3$/$M_4$), maintaining symmetry is critical to minimize input-referred offset and common-mode errors. As discussed in the theory section, we assume perfect matching, but in layout, this must be enforced. Both transistors in each pair are laid out with identical orientation to avoid process-dependent asymmetries. The gate-aligned configuration is preferred over parallel-gate structures to mitigate the effects of gate shadowing during source/drain implantation.
 
-To suppress the effect of linear process gradients across the chip, a common-centroid layout is employed for the critical pairs. M1 and M2 are each split into two halves and placed diagonally opposite each other. Similarly, M3 and M4 are interdigitated. This first-order cancellation of gradients in oxide thickness, doping concentration, and other parameters ensures that the symmetry assumed in hand calculations is preserved in silicon @hastings2018art.
+To suppress the effect of linear process gradients across the chip, a common-centroid layout is employed for the critical pairs. $M_1$ and $M_2$ are each split into two halves and placed diagonally opposite each other. Similarly, $M_3$ and $M_4$ are interdigitated. This first-order cancellation of gradients in oxide thickness, doping concentration, and other parameters ensures that the symmetry assumed in hand calculations is preserved in silicon @hastings2018art.
 
 The surrounding environment is also matched. Dummy transistors are placed at the boundaries of the active arrays to ensure that each finger sees identical STI stress and well proximity effects. NMOS dummy fingers are tied to GND and PMOS dummy fingers are tied to VDD to mitigate the phenomenon of charge building up on the poly layer, which may arc to an adjacent finger and damage the silicon. Tying dummy fingers to GND/VDD, respectively, also mitigates the antenna effect (Hastings). Metal lines carrying bias currents or clocks are routed symmetrically with respect to the differential pairs, and where asymmetry is unavoidable, dummy lines are added to balance parasitic coupling.
 
@@ -407,22 +407,16 @@ The surrounding environment is also matched. Dummy transistors are placed at the
 
 The wide transistors in the design, particularly the differential pair and the current mirror devices, are implemented using multifinger structures to reduce both the source/drain junction area and the gate resistance. The gate resistance must be kept sufficiently low to minimize thermal noise, especially given the comparator's role in low-noise applications.
 
-For the differential pair M1/M2, each transistor is folded into multiple fingers. The width of each finger is chosen such that the finger's distributed resistance is less than the inverse transconductance of the finger. With a sheet resistance of the gate polysilicon approximately 30 Ω/□, the number of fingers is selected to ensure the gate thermal noise voltage remains well below the channel thermal noise. Dummy fingers are added at both ends of the array to buffer the active fingers from STI-induced stress, which would otherwise modulate the threshold voltage and carrier mobility @hastings2018art.
+For the differential pair $M_1$/$M_2$, each transistor is folded into multiple fingers. The width of each finger is chosen such that the finger's distributed resistance is less than the inverse transconductance of the finger. With a sheet resistance of the gate polysilicon approximately 30 Ω/□, the number of fingers is selected to ensure the gate thermal noise voltage remains well below the channel thermal noise. Dummy fingers are added at both ends of the array to buffer the active fingers from STI-induced stress, which would otherwise modulate the threshold voltage and carrier mobility @hastings2018art.
 
-The current mirror transistors M5 and M6 are also implemented with multiple fingers to improve matching and reduce noise. The layout follows a unit-cell approach: a minimum-sized finger serves as the unit transistor, and larger devices are constructed by placing multiple unit cells in parallel. This approach allows precise current ratios to be maintained despite process variations.
+The current mirror transistors $M_5$ and $M_6$ are also implemented with multiple fingers to improve matching and reduce noise. The layout follows a unit-cell approach: a minimum-sized finger serves as the unit transistor, and larger devices are constructed by placing multiple unit cells in parallel. This approach allows precise current ratios to be maintained despite process variations.
 
-It's most important that we implement our multi-finger method to the differential pair transistors, M1 and M2. We desperately need these two transistors to have symmetry, lest we incur mismatch issues that we will discuss in more detail later. M3 and M4 also have to be symmetric and are also arranged as multi-fingers, but we will see that the design approach for M1 and M2 is more nuanced.
-We arrange the differential pair as two rows of six column fingers in accordance with the common centroid design philosophy. When we look at our differential pair in the layout, we have it arranged as:
-
-sM1dM2sM2dM1sM1dM2s
-
-sM2dM1sM1dM2sM2dM1s
-
-Where d and s are the drain and source respectively. M1 and M2 are the very wide transistors on the bottom, M3 and M4 are the smaller transistors on the top, in accordance with their size ratios. 
+It's most important that we implement our multi-finger method to the differential pair transistors, $M_1$ and $M_2$. We desperately need these two transistors to have symmetry, lest we incur mismatch issues that we will discuss in more detail later. $M_3$ and $M_4$ also have to be symmetric and are also arranged as multi-fingers, but we will see that the design approach for $M_1$ and $M_2$ is more nuanced.
+We arrange the differential pair as two rows of six column fingers in accordance with the common centroid design philosophy. When we look at our differential pair in the layout, we have it arranged in a $A B B A A B$ format, where $A$ and $B$ are transistors $M_1$ and $M_2$ specifically. $M_1$ and $M_2$ are the very wide transistors on the bottom, $M_3$ and $M_4$ are the smaller transistors on the top, in accordance with their size ratios. 
 
 #figure(
   image("figures/DIFF_AMP_LAYOUT.jpeg", width: 50%),
-  caption: [Layout zoomed in on the differential pair. Notice the wide gates separated into fingers (the red color) where M1 and M2 are separated into two rows, six columns of multi-fingers. M3 and M4, the PMOS current mirror pair, are connected by drain and shown at the top of the image, also drawn as multi-fingers.]
+  caption: [Layout zoomed in on the differential pair. Notice the wide gates separated into fingers (the red color) where $M_1$ and $M_2$ are separated into two rows, six columns of multi-fingers. $M_3$ and $M_4$, the PMOS current mirror pair, are connected by drain and shown at the top of the image, also drawn as multi-fingers.]
 )
 
 
@@ -499,13 +493,14 @@ In our case, rise/fall time asymmetry is the main culprit of duty cycle distorti
 
 There is a threshold mismatch between the switching threshold of the CMOS inverter and the DC operating point of the cs_out stage driving it (which sits around $~$1.2 V). 
 
-The switching threshold of the CMOS inverter should be close to or equal to VDD/2 (1.5 V). So, from our hand calcs, we see that $(W\/L)_8$ is a current mirror to M5, and tries to sink more current than what M7 can provide. When we tried to input $(W\/L)_8 = 8$ as the dimensions of M8, we saw that this caused M8 to sink $9.9 mu A$ peak-peak. This demand exceeds the supply of M7, which causes M8 to enter the triode region and M7 to turn off - which means the operating point cs_out is essentially just pulled low to ground.
+The switching threshold of the CMOS inverter should be close to or equal to VDD/2 (1.5 V). So, from our hand calcs, we see that $(W\/L)_8$ is a current mirror to $M_5$, and tries to sink more current than what $M_7$ can provide. When we tried to input $(W\/L)_8 = 8$ as the dimensions of $M_8$, we saw that this caused $M_8$ to sink $9.9 mu A$ peak-peak. This demand exceeds the supply of $M_7$, which causes $M_8$ to enter the triode region and $M_7$ to turn off - which means the operating point cs_out is essentially just pulled low to ground.
 
 But how could we not see this from our hand calculations? 
 
-Well, we know from Razavi that cs_out is not a stable or well-defined operating point. A small change to the current will cause a huge change to the operating point. The range of current that M8 can sink without turning M7 off is very small, and that's why we had to "guess" the width of M8 until we got the sunk current to be around 75% of the peak-peak current from our hand calculations. At this width, M8 sinks just enough current to keep M7 on. However - finding an analytically satisfying solution to the problem of this operating point still evades us. Most likely, the SPICE solver finds an equilibrium point at cs_out = GND that we don't consider in our hand calculations. 
+Well, we know from Chapter 3.3 @razavi2016design that cs_out is not a stable or well-defined operating point. A small change to the current will cause a huge change to the operating point. The range of current that $M_8$ can sink without turning $M_7$ off is very small, and that's why we had to "guess" the width of $M_8$ until we got the sunk current to be around 75% of the peak-peak current from our hand calculations. At this width, $M_8$ sinks just enough current to keep $M_7$ on. However - finding an analytically satisfying solution to the problem of this operating point still evades us. Most likely, the SPICE solver finds an equilibrium point at cs_out = GND that we don't consider in our hand calculations. 
 
-Either way, a bias point within 0.2-0.3 V from VDD/2 biases the CMOS inverter well enough that we see the proper 50% duty cycle. The key point of this discussion, ultimately, is to say that this operating point is not robust and highly susceptible to noise, which will cause the duty cycle to become distorted. 
+Either way, a bias point within 0.2-0.3 V from $V_(D D)\/2$ biases the CMOS inverter well enough that we see the proper 50% duty cycle. The key point of this discussion, ultimately, is to say that this operating point is not robust and highly susceptible to noise, which will cause the duty cycle to become distorted. 
+
 == Clipping of CS Output and Noise Margin
 
 Clipping of the CS output is a problem related to the previously discussed one on duty cycle distortion. 
@@ -514,10 +509,10 @@ In our Theory section we already discussed the "ideal" operating point of cs_out
 
 In our simulation, however, we see that on the low end, cs_out clips to zero (GND). Shouldn't the "lowest" point of its swing be Vin1 - Vth? What is causing it to swing to ground, giving us the clipping that we see in simulation? 
 
-The answer is: when M8 is pulling a high current (on the low end of the swing), M7 turns off. This means that M8 now drops into triode, and the voltage cs_out increasingly starts to "see" ground. Now, there is no "floor" to the cs_out signal.
-Remember, cs_out is an amplified and inverted signal of diff_out (since it is a common-source amplifier). When diff_out is high, $V_"SG7"$ shrinks until $V_"SG7" < |V_"THP"|$, thereby turning off entirely. At this point M8 has no load, and thus pulls cs_out to ground.
+The answer is: when $M_8$ is pulling a high current (on the low end of the swing), $M_7$ turns off. This means that $M_8$ now drops into triode, and the voltage cs_out increasingly starts to "see" ground. Now, there is no "floor" to the cs_out signal.
+Remember, cs_out is an amplified and inverted signal of diff_out (since it is a common-source amplifier). When diff_out is high, $V_"SG7"$ shrinks until $V_"SG7" < |V_"THP"|$, thereby turning off entirely. At this point $M_8$ has no load, and thus pulls cs_out to ground.
 
-So, our calculations provided us with a theoretical lower bound to cs_out, but the dynamic condition actually tells us that M7 isn't always active like we assumed it was. How do we fix this? Well, the first solution that comes to mind is to add a source degeneration resistor to M8 - this gives us the "feedback" we need to stabilize cs_out, and helps to improve the linearity of the operating point. With this, we can soften how aggressively M8 pulls its output voltage to ground. In CMOS technology, a degeneration resistor can be implemented by means of a diode-connected NMOS at the source of M8. We could, of course, reduce the OTA gain, but we should never do that. The whole point of the OTA is to amplify a small-signal gain, so we should keep it as reasonably high as possible.
+So, our calculations provided us with a theoretical lower bound to cs_out, but the dynamic condition actually tells us that $M_7$ isn't always active like we assumed it was. How do we fix this? Well, the first solution that comes to mind is to add a source degeneration resistor to $M_8$ - this gives us the "feedback" we need to stabilize cs_out, and helps to improve the linearity of the operating point. With this, we can soften how aggressively $M_8$ pulls its output voltage to ground. In CMOS technology, a degeneration resistor can be implemented by means of a diode-connected NMOS at the source of $M_8$. We could, of course, reduce the OTA gain, but we should never do that. The whole point of the OTA is to amplify a small-signal gain, so we should keep it as reasonably high as possible.
 
 Consequently, having clipping at cs_out causes an asymmetric input into the inverter - leading to our aforementioned duty cycle distortion problem. This will give us the unequal rise/fall times that we see at the inverter output. 
 
@@ -530,13 +525,13 @@ This is more of a layout problem, but it did define our layout decisions so we w
 
 We have already seen the effects of nonlinearity in our CS stage, causing cs_out to be inherently unstable and requiring some feedback to make it a well-defined operating point. 
 
-Mismatch is another key issue that can really only be resolved in layout. In the Theory section, we assumed perfect symmetry between the OTA pairs: M1=M2, and M3=M4. This allows us to complete our analysis of OTA behavior while ignoring an important factor that does show up in real circuits: threshold voltage variation, $Delta V_"th"$. 
+Mismatch is another key issue that can really only be resolved in layout. In the Theory section, we assumed perfect symmetry between the OTA pairs: $M_1$=$M_2$, and $M_3$=$M_4$. This allows us to complete our analysis of OTA behavior while ignoring an important factor that does show up in real circuits: threshold voltage variation, $Delta V_"th"$. 
 
 Mismatch is caused by microscopic variations in device dimensions @razavi2016design. Having mismatch between two devices in the OTA can cause, among other things, a DC offset where $V_"out" != 0$ when $V_"in" = 0$.  This reduces the precision of which signals can be measured. It introduces harmonics into the OTA equations related to the dimension mismatches. It also, notably, increases the channel capacitance. 
 
 = Conclusion
 
-This project successfully demonstrated the complete design flow for a CMOS comparator, from hand calculations and schematic capture to layout implementation and simulation verification. The three-stage architecture—consisting of a five-transistor OTA, a common-source gain stage, and a CMOS inverter—achieved the targeted differential gain of approximately 67 V/V while maintaining proper biasing with a 3 V supply. The hand calculations provided a solid foundation for sizing the transistors, with the differential pair M1/M2 sized at $(W/L) = 9$, the tail current mirror at $(W/L)_6 = 12$, and the inverter stage sized with $(W/L)_9 = 4$ and $(W/L)_10 = 1$.
+This project successfully demonstrated the complete design flow for a CMOS comparator, from hand calculations and schematic capture to layout implementation and simulation verification. The three-stage architecture—consisting of a five-transistor OTA, a common-source gain stage, and a CMOS inverter—achieved the targeted differential gain of approximately 67 V/V while maintaining proper biasing with a 3 V supply. The hand calculations provided a solid foundation for sizing the transistors, with the differential pair $M_1$/$M_2$ sized at $(W/L) = 9$, the tail current mirror at $(W/L)_6 = 12$, and the inverter stage sized with $(W/L)_9 = 4$ and $(W/L)_10 = 1$.
 
 The layout phase revealed critical considerations that schematic simulation alone cannot capture. Common-centroid placement of the differential pair and current mirror effectively cancels first-order process gradients, while multifinger folding of wide transistors reduces gate resistance and mitigates STI-induced stress. Dummy fingers tied to GND and VDD address both STI stress and the antenna effect, ensuring reliability. The DRC verification using MAGIC EDA confirmed compliance with SCMOS rules at $lambda = 0.25 mu m$, with all dimensions scaled to integer multiples of the minimum feature size.
 
@@ -544,7 +539,7 @@ Simulation results validated the comparator's functionality but also exposed pra
 
 == Future Work
 
-Several avenues for improvement emerged from this analysis. First and foremost, adding source degeneration to M8—implemented via a diode-connected NMOS at the source—would provide the negative feedback necessary to stabilize cs_out and linearize the stage's transfer characteristic. This modification would directly address the clipping issue while preserving the OTA's high gain.
+Several avenues for improvement emerged from this analysis. First and foremost, adding source degeneration to $M_8$—implemented via a diode-connected NMOS at the source—would provide the negative feedback necessary to stabilize cs_out and linearize the stage's transfer characteristic. This modification would directly address the clipping issue while preserving the OTA's high gain.
 
 Second, a more rigorous noise analysis is essential. AC noise simulations would quantify the input-referred noise contributions from each stage and establish the comparator's minimum detectable signal. This analysis would also clarify the noise margin limitations observed during cs_out saturation.
 
