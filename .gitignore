@@ -40,3 +40,6 @@ python-calculations/__pycache__
 *.log
 *.plt
 *.db
+
+# ensure we don't doxx ourselves lol 
+authors.typ
