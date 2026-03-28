@@ -39,9 +39,6 @@
   ],
 )
 
-= Credits
-
-While my partner handled the bulk of the hand-calculations, schematic design, and the study of second-order circuit effects, I focused on the layout process, floorplan analysis, and the development and initial testing of the system prototype. Both phases of the project demanded an equal level of effort, and I appreciate the collaborative dynamic that allowed us to divide the workload effectively. The transition from schematic to a functional physical layout and prototype was a significant undertaking, and I am pleased with the results of the initial testing phase.
 
 = Theory
 
